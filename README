@@ -1,0 +1,33 @@
+Mustafa Samet Cimen
+msc282
+
+### Design and Implementation
+The mysh program is implemented as a small Unix-style shell that supports interactive mode, batch mode, pipelines, redirection, conditionals, and built-in commands.
+
+Input is read using unbuffered read() calls, and the shell ensures it does not read past a newline before executing the command. For parsing, the command line is tokenized into a token list, and a pipeline structure is built according to the project specifications
+
+Built-in commands (cd, pwd, which, exit, die) are executed in the parent process when possible (single command, no pipes or redirection). Otherwise, they execute in child processes so they can behave like regular programs inside pipelines and allow redirection.
+
+### Requirements 
+The program accepts the normal arguments
+spell [file (optional)]
+I tested with print.txt and test1.sh
+
+### Tests
+#### Basic command execution:
+Checked that basic commands run correctly and print expected output.
+
+ls
+echo hello
+pwd
+
+#### Testing built-ins:
+cd subdir
+cd nonexistent_dir     # prints correct error
+pwd
+which ls
+which cd               # returns failure with no output
+
+#### Testing redirection:
+echo hello > print.txt
+cat < print.txt

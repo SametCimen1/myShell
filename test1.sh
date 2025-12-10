@@ -1,0 +1,3 @@
+# ==== Basic echo ====
+echo Hello
+
